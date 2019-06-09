@@ -2,12 +2,15 @@ from .rule import Rule
 from .exceptions.ruleset_exceptions import RulesetRuleTypeException
 from .permission import Permission
 
-def check_rules_are_instances_of_rule(func):
-    def wrapper(self, rules, *args, **kwargs):
-        for rule in rules:
-            if not isinstance(rule, Rule):
-                raise RulesetRuleTypeException(rule)
+def check_rules_are_instances_of_rule(rules):
+    for rule in rules:
+        if not isinstance(rule, Rule):
+            raise RulesetRuleTypeException(rule)
 
+
+def verify_rules_correctness(func):
+    def wrapper(self, rules, *args, **kwargs):
+        check_rules_are_instances_of_rule(rules)
         func(self, rules, *args, **kwargs)
 
     return wrapper
@@ -15,7 +18,7 @@ def check_rules_are_instances_of_rule(func):
 
 class Ruleset:
 
-    @check_rules_are_instances_of_rule
+    @verify_rules_correctness
     def __init__(self, rules=set()):
         self.rules = set(rules)
         self.build_rules_map()
