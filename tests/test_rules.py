@@ -7,11 +7,11 @@ from access_control import Rule, Permission, exceptions
 class TestRule(unittest.TestCase):
     def test_implicit_deny_explicitly_stated(self):
         with self.assertRaises(
-            exceptions.rule_expections.ImplicitDenyExplictlyDeclaredException) as context:
+            exceptions.rule_exceptions.ImplicitDenyExplictlyDeclaredException) as context:
             rule = Rule('scope.action', permission=Permission.IMPLICIT_DENY)
         
         expected_message = 'An IMPLICIT_DENY was excplicitly declared. Use EXPLICIT_DENY instead.'
-        self.assertEqual(expected_message, context.exception.message)
+        self.assertEqual(expected_message, str(context.exception))
 
     def test_rule_construction_with_all_params(self):
         action = 'scope.action'

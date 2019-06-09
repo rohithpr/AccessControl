@@ -1,5 +1,5 @@
 from .permission import Permission
-from .exceptions.rule_expections import ImplicitDenyExplictlyDeclaredException
+from .exceptions.rule_exceptions import ImplicitDenyExplictlyDeclaredException
 
 
 class Rule:

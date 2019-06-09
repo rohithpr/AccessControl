@@ -1,0 +1,10 @@
+language: python
+
+install:
+  pip install -r devops/requirements_lock.txt
+
+git:
+  quiet: true
+
+script:
+  - pytest tests
