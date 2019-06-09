@@ -1,5 +1,7 @@
 ### AccessControl
 
+[![Build Status](https://travis-ci.com/rohithpr/AccessControl.svg?branch=master)](https://travis-ci.com/rohithpr/AccessControl)
+
 Implementation of Access Control mechanism such as Rules, Rulesets, Users, Groups and Actions for Python.
 
 #### Installation
